@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { QUERIES } from "../../constants";
 
 const SecondaryStory = ({ id, title, image, location, abstract }) => {
   return (
-    <a href={`/story/${id}`}>
+    <StoryLink href={`/story/${id}`}>
       <Wrapper>
         <Image alt={image.alt} src={image.src} />
         <Heading>{title}</Heading>
@@ -11,20 +12,41 @@ const SecondaryStory = ({ id, title, image, location, abstract }) => {
           <Abstract>{abstract}</Abstract>
         </div>
       </Wrapper>
-    </a>
+    </StoryLink>
   );
 };
 
+const StoryLink = styled.a`
+  padding: 16px 0;
+  background-color: var(--color-gray-100);
+
+  @media (${QUERIES.tabletOnly}) {
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+`;
+
 const Wrapper = styled.article`
   display: grid;
+  grid-template-columns: 120px 1fr;
   grid-template-areas:
     "image heading"
     "image abstract";
   gap: 4px 16px;
-  grid-template-columns: 120px 1fr;
   color: var(--color-gray-900);
-  background-color: var(--color-gray-100);
-  padding: 16px 0;
+
+  @media (${QUERIES.tabletOnly}) {
+    grid-template-areas:
+      "image"
+      "heading"
+      "abstract";
+    grid-template-columns: revert;
+  }
 `;
 
 const Image = styled.img`
@@ -43,6 +65,7 @@ const Heading = styled.h2`
   line-height: 1.3;
   /* Optical alignment */
   margin-top: -2px;
+  padding-top: 4px;
 `;
 
 const Abstract = styled.p`
