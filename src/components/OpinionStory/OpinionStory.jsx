@@ -18,15 +18,26 @@ const OpinionStory = ({ id, title, author, avatar }) => {
 
 const StoryLink = styled.a`
   flex: 1;
+  padding: 16px 0;
+  background-color: var(--color-gray-100);
+
+  @media (${QUERIES.laptopAndUp}) {
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
 `;
 
 const Wrapper = styled.article`
   color: var(--color-gray-900);
-  background-color: var(--color-gray-100);
-  padding: 16px 0;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  gap: 0 8px;
 
   @media (${QUERIES.tabletOnly}) {
     display: revert;

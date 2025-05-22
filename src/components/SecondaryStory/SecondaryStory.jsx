@@ -29,6 +29,17 @@ const StoryLink = styled.a`
       padding-bottom: 0;
     }
   }
+
+  @media (${QUERIES.laptopAndUp}) {
+    padding: 16px 0;
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
 `;
 
 const Wrapper = styled.article`
@@ -56,6 +67,8 @@ const Image = styled.img`
   height: 120px;
   border-radius: 4px;
   object-fit: cover;
+  @media (${QUERIES.laptopAndUp}) {
+  }
 `;
 
 const Heading = styled.h2`
@@ -65,7 +78,6 @@ const Heading = styled.h2`
   line-height: 1.3;
   /* Optical alignment */
   margin-top: -2px;
-  padding-top: 4px;
 `;
 
 const Abstract = styled.p`
