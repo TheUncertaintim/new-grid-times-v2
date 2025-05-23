@@ -1,11 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { MARKET_DATA, SPORTS_STORIES } from '../../data';
+import { MARKET_DATA, SPORTS_STORIES } from "../../data";
 
-import MarketCard from '../MarketCard';
-import SectionTitle from '../SectionTitle';
-import MiniStory from '../MiniStory';
+import MarketCard from "../MarketCard";
+import SectionTitle from "../SectionTitle";
+import MiniStory from "../MiniStory";
+import { QUERIES } from "../../constants";
 
 const SpecialtyStoryGrid = () => {
   return (
@@ -13,8 +14,8 @@ const SpecialtyStoryGrid = () => {
       <MarketsSection>
         <SectionTitle
           cornerLink={{
-            href: '/markets',
-            content: 'Visit Markets data »',
+            href: "/markets",
+            content: "Visit Markets data »",
           }}
         >
           Markets
@@ -28,17 +29,19 @@ const SpecialtyStoryGrid = () => {
       <SportsSection>
         <SectionTitle
           cornerLink={{
-            href: '/sports',
-            content: 'Visit Sports page »',
+            href: "/sports",
+            content: "Visit Sports page »",
           }}
         >
           Sports
         </SectionTitle>
-        <SportsStories>
-          {SPORTS_STORIES.map((data) => (
-            <MiniStory key={data.id} {...data} />
-          ))}
-        </SportsStories>
+        <StoryContainer>
+          <SportsStories>
+            {SPORTS_STORIES.map((data) => (
+              <MiniStory key={data.id} {...data} />
+            ))}
+          </SportsStories>
+        </StoryContainer>
       </SportsSection>
     </Wrapper>
   );
@@ -51,10 +54,32 @@ const Wrapper = styled.div`
 
 const MarketsSection = styled.section``;
 
-const MarketCards = styled.div``;
+const MarketCards = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+`;
 
-const SportsSection = styled.section``;
+const SportsSection = styled.section`
+  @media (${QUERIES.tabletAndUp}) {
+    display: grid;
+  }
+`;
 
-const SportsStories = styled.div``;
+const StoryContainer = styled.div`
+  @media (${QUERIES.tabletAndUp}) {
+    overflow: auto;
+  }
+`;
+
+const SportsStories = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+
+  @media (${QUERIES.tabletAndUp}) {
+    display: flex;
+  }
+`;
 
 export default SpecialtyStoryGrid;
